@@ -8,10 +8,15 @@ createCanvas(1000,900);
 img = loadImage("moon.png");
 
 for (var i = 0; i < numstar; i++) {
-  starXloc.push(random(width));
-  starYloc.push(random(height));
+  let xy = getRandomXandY();
+  starXloc.push(xy[0]);
+  starYloc.push(xy[1]);
 }
 }
+
+
+
+
 
 function draw() {
 background(0);
@@ -19,15 +24,12 @@ let phase=map(mouseX, 0, width, 1, 30);
 drawMoon(phase);
 
 
-
 for (var i = 0; i <= numstar; i++) {
   push();
   translate(starXloc[i], starYloc[i]);
   drawStar(10);
   pop();
-}
-
-
+  }
 
 }	
 
@@ -57,17 +59,31 @@ function drawMoon(phase){
   phase=map(phase, 1, 30, 450, 910);
   image(img, 550, 100, 250, 250);
 
+  {
 
-
-{
-
-fill(0);
-}
+  fill(0);
+  }
 
 {
-ellipse(phase, 200, 250, 280);
-fill(255, 255, 255);
-}
+  ellipse(phase, 200, 250, 280);
+  fill(255, 255, 255);
+  }
+
 
 }
+
+function getRandomXandY(){
+  let x = 500;
+  let y = 300;
+  while (x > 450 && x < 910 && y > 100 && y < 400){
+    x = random(width);
+    y = random(height);
+  }
+   //console.log(number);
+  return[x, y];
+}
+
+
+
+
 
